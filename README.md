@@ -1,4 +1,4 @@
-# Invoice Scanner & Data Extractor (PyTorch)
+# LedgerLens — Invoice Scanner & Data Extractor (PyTorch)
 
 A portfolio-ready, production-style project that scans invoices, runs OCR, extracts structured fields, and uses a small PyTorch classifier to enrich results. The project includes:
 

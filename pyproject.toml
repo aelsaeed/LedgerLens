@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "invoice-scanner"
+name = "ledgerlens"
 version = "0.1.0"
 description = "Invoice scanner and data extractor with a PyTorch-powered classifier."
 readme = "README.md"
