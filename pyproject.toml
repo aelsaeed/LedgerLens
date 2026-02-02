@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "invoice-scanner"
+version = "0.1.0"
+description = "Invoice scanner and data extractor with a PyTorch-powered classifier."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Your Name"}]
+dependencies = [
+  "fastapi>=0.110",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+  "pillow>=10.2",
+  "pytesseract>=0.3.10",
+  "rich>=13.7",
+  "typer>=0.9",
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.3",
+]
+
+[project.scripts]
+invoice-scanner = "invoice_scanner.cli:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
