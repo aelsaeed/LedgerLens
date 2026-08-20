@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="LedgerLens turns invoice images into evidence-linked, validated financial data."
+    />
+    <meta name="theme-color" content="#111a17" />
+    <title>LedgerLens — Explainable invoice intelligence</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="LedgerLens home">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span>LedgerLens</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <span class="service-status" id="serviceStatus">
+            <i aria-hidden="true"></i><span>Checking OCR</span>
+          </span>
+          <a href="/docs">API docs</a>
+          <a href="https://github.com/aelsaeed/LedgerLens">GitHub</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span>Document intelligence</span> / explainable by design</p>
+            <h1 id="hero-title">Know what the invoice says. <em>Prove why.</em></h1>
+            <p class="hero-lede">
+              LedgerLens converts invoice images into structured financial data, links every
+              value to its source, and checks the arithmetic before automation takes over.
+            </p>
+          </div>
+          <dl class="hero-facts" aria-label="Core capabilities">
+            <div><dt>Exact</dt><dd>Decimal money</dd></div>
+            <div><dt>Traceable</dt><dd>Field evidence</dd></div>
+            <div><dt>Safe</dt><dd>Review routing</dd></div>
+          </dl>
+        </section>
+
+        <section class="workbench" aria-labelledby="workbench-title">
+          <div class="workbench-bar">
+            <div>
+              <p class="section-kicker">Interactive workspace</p>
+              <h2 id="workbench-title">Invoice review</h2>
+            </div>
+            <div class="actions">
+              <button class="button button-secondary" id="demoButton" type="button">
+                Reset sample
+              </button>
+              <label class="button button-primary" for="fileInput">
+                <span>Scan an invoice</span>
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/png,image/jpeg,image/tiff,image/webp,image/bmp"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="workspace-grid">
+            <article class="source-panel" aria-labelledby="source-title">
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-index">01</span>
+                  <h3 id="source-title">Source document</h3>
+                </div>
+                <span class="file-label" id="fileLabel">northstar-cloud-demo.txt</span>
+              </div>
+
+              <div class="drop-zone" id="dropZone">
+                <p><strong>Drop an invoice here</strong> or use “Scan an invoice”</p>
+                <span>PNG, JPEG, TIFF, WebP or BMP · up to 10 MB</span>
+              </div>
+
+              <div class="document-stage" id="documentStage">
+                <div class="image-wrap" id="imageWrap" hidden>
+                  <img id="imagePreview" alt="Uploaded invoice preview" />
+                  <div class="evidence-overlay" id="evidenceOverlay" aria-hidden="true"></div>
+                </div>
+                <div class="sample-invoice" id="sampleInvoice" aria-label="Sample invoice">
+                  <div class="sample-invoice-head">
+                    <div>
+                      <span class="sample-logo">N/</span>
+                      <p>Northstar Cloud Ltd</p>
+                    </div>
+                    <div class="sample-title">Invoice</div>
+                  </div>
+                  <div class="sample-meta">
+                    <p><span>Invoice number</span><strong>LL-2026-1042</strong></p>
+                    <p><span>Invoice date</span><strong>18 Aug 2026</strong></p>
+                    <p><span>Due date</span><strong>17 Sep 2026</strong></p>
+                  </div>
+                  <table>
+                    <thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead>
+                    <tbody>
+                      <tr><td>Analytics workspace</td><td>8</td><td>$24.00</td><td>$192.00</td></tr>
+                      <tr><td>Implementation support</td><td>3</td><td>$95.00</td><td>$285.00</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="sample-totals">
+                    <p><span>Subtotal</span><strong>$477.00</strong></p>
+                    <p><span>Tax (10%)</span><strong>$47.70</strong></p>
+                    <p class="grand-total"><span>Total USD</span><strong>$524.70</strong></p>
+                  </div>
+                </div>
+              </div>
+              <p class="privacy-note"><span aria-hidden="true">⌁</span> Uploads are processed in a temporary file and deleted immediately.</p>
+            </article>
+
+            <article class="results-panel" aria-labelledby="results-title" aria-live="polite">
+              <div class="panel-heading result-heading">
+                <div>
+                  <span class="panel-index">02</span>
+                  <h3 id="results-title">Validated result</h3>
+                </div>
+                <div class="quality-summary">
+                  <div class="score-ring" id="scoreRing" style="--score: 100">
+                    <span id="scoreValue">100</span>
+                  </div>
+                  <div>
+                    <span class="review-status is-clear" id="reviewStatus">Ready to automate</span>
+                    <p id="processingMeta">Audited from supplied text</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="loading-state" id="loadingState" hidden>
+                <span></span><p>Reading and validating your invoice…</p>
+              </div>
+              <div class="error-state" id="errorState" role="alert" hidden></div>
+
+              <div id="resultContent">
+                <div class="field-grid" id="fieldGrid"></div>
+
+                <section class="checks-section" aria-labelledby="checks-title">
+                  <div class="subheading-row">
+                    <h4 id="checks-title">Audit trail</h4>
+                    <span id="checkCount">4 checks</span>
+                  </div>
+                  <div class="checks-list" id="checksList"></div>
+                </section>
+
+                <div class="result-tabs" role="tablist" aria-label="Result details">
+                  <button class="tab is-active" id="evidenceTab" type="button" role="tab" aria-selected="true" aria-controls="evidencePanel">Evidence</button>
+                  <button class="tab" id="jsonTab" type="button" role="tab" aria-selected="false" aria-controls="jsonPanel">JSON response</button>
+                </div>
+                <section id="evidencePanel" role="tabpanel" aria-labelledby="evidenceTab">
+                  <div class="evidence-list" id="evidenceList"></div>
+                </section>
+                <section id="jsonPanel" role="tabpanel" aria-labelledby="jsonTab" hidden>
+                  <div class="json-toolbar">
+                    <span>API response</span>
+                    <button id="copyJson" type="button">Copy JSON</button>
+                  </div>
+                  <pre id="jsonOutput"></pre>
+                </section>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="how-it-works" aria-labelledby="flow-title">
+          <div class="flow-intro">
+            <p class="section-kicker">Built for trust</p>
+            <h2 id="flow-title">From pixels to a decision.</h2>
+            <p>The output is useful because its path is inspectable—not because a black box says so.</p>
+          </div>
+          <ol class="flow-steps">
+            <li><span>01</span><strong>Read</strong><p>Tesseract returns text, line confidence, and bounding boxes.</p></li>
+            <li><span>02</span><strong>Structure</strong><p>Typed extractors normalize dates, exact money, and line items.</p></li>
+            <li><span>03</span><strong>Audit</strong><p>Deterministic checks reconcile totals and route uncertain data to review.</p></li>
+          </ol>
+        </section>
+      </main>
+
+      <footer>
+        <a class="brand brand-footer" href="/"><span class="brand-mark" aria-hidden="true"><span></span></span><span>LedgerLens</span></a>
+        <p>Explainable invoice intelligence · MIT licensed</p>
+        <a href="/redoc">Read the API reference <span aria-hidden="true">↗</span></a>
+      </footer>
+    </div>
+  </body>
+</html>

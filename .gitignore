@@ -1,6 +1,49 @@
-.venv/
+# Python bytecode
 __pycache__/
-*.pyc
-data/sample_invoice.png
-models/
+*.py[cod]
+*$py.class
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+ENV/
 .env
+.env.*
+!.env.example
+
+# Packaging and generated metadata
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Tests, coverage, and static analysis
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.tox/
+.nox/
+
+# Generated application artifacts
+data/
+models/
+artifacts/
+uploads/
+*.log
+*.sqlite3
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

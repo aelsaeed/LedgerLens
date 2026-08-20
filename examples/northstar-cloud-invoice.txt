@@ -1,0 +1,12 @@
+Northstar Cloud Ltd
+Invoice Number: LL-2026-1042
+Invoice Date: 2026-08-18
+Due Date: 2026-09-17
+
+Description  Qty  Unit Price  Amount
+Analytics workspace  8  24.00  192.00
+Implementation support  3  95.00  285.00
+
+Subtotal  477.00
+Tax (10%)  47.70
+Total USD  524.70
