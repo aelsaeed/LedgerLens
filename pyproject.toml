@@ -23,7 +23,7 @@ classifiers = [
 ]
 dependencies = [
   "fastapi>=0.110,<1",
-  "pydantic>=2.6,<3",
+  "pydantic>=2.14.3,<3",
   "pydantic-settings>=2.2,<3",
   "pillow>=10.2,<13",
   "python-multipart>=0.0.9,<1",
